@@ -9,6 +9,8 @@ const verifyJwt = async (req, res, next) => {
             req.headers?.authorization?.replace("Bearer ", "") ||
             req.cookies?.accessToken;
 
+
+
         if (!token) {
             return res.status(401).json({ message: "Unauthorized request. No token provided." });
         }
@@ -17,7 +19,7 @@ const verifyJwt = async (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
         // Fetch user
-        const user = await User.findById(decodedToken._id).select("-password");
+        const user = await User.findById(decodedToken.id).select("-password");
 
         if (!user) {
             return res.status(401).json({ message: "Invalid token. User not found." });
