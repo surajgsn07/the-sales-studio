@@ -6,9 +6,9 @@ const cors = require("cors");
 
 app.use(cors(
     {
-        // origin: "https://the-sales-studio.netlify.app",
+        origin: "https://the-sales-studio.netlify.app",
         
-        origin: "http://localhost:5173",
+        // origin: "http://localhost:5173",
         methods: ["GET", "POST" , "PUT" , "DELETE"],
         credentials: true
     }
