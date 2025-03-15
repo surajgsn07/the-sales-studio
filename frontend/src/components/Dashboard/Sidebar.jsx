@@ -43,6 +43,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <SidebarLink to="/dashboard" icon={<FiHome />} label="Coupon List" />
           <SidebarLink to="/dashboard/add-coupon" icon={<FiUser />} label="Add Coupon" />
           <SidebarLink to="/dashboard/set-availability" icon={<FiTag />} label="Set Availability" />
+          <SidebarLink to="/dashboard/history" icon={<FiTag />} label="Watch History" />
           <div
             onClick={handleLogout}
             className="flex items-center px-6 py-3 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 transition"

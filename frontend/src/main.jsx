@@ -15,6 +15,7 @@ import Home from './components/Home/Home.jsx'
 
 
 import { getCookie } from './axiosConfig/cookieFunc.js'
+import WatchHistory from './components/Dashboard/WatchHistory.jsx'
 
 const ProtectedRoute = () => {
   const isAuthenticated = getCookie("accessToken");
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
                 path: "set-availability",
                 element: <Availability />,
               },
+              {
+                path:"history",
+                element:<WatchHistory/>
+              }
             ],
           },
         ],

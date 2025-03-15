@@ -66,7 +66,7 @@ function Availability() {
         </div>
       )}
 
-      <div className="w-full max-w-3xl bg-white dark:bg-[#181818] shadow-lg rounded-lg p-6 border border-gray-300 dark:border-gray-700">
+      <div className="w-full max-w-3xl bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6 border border-gray-300 dark:border-gray-700">
         <h2 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-4">
           Manage Coupons
         </h2>
@@ -81,11 +81,11 @@ function Availability() {
         ) : (
           <>
             {coupons.length > 0 ? (
-              <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+              <ul className="divide-y bg-gray-200 dark:bg-gray-700">
                 {coupons.map((coupon) => (
                   <li
                     key={coupon._id}
-                    className="flex items-center border m-2.5 border-gray-200 dark:border-gray-700 rounded justify-between p-3 bg-gray-50 dark:bg-[#272727]"
+                    className="flex items-center border m-2.5 border-gray-200 dark:border-gray-700 rounded justify-between p-3 bg-gray-50 dark:bg-gray-800"
                   >
                     <span className="font-mono text-gray-700 dark:text-gray-300 text-lg">
                       {coupon.code}

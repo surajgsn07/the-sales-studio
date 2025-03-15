@@ -30,4 +30,12 @@ const claimCoupon = async (req, res) => {
   }
 };
 
-module.exports = { claimCoupon };
+const getAllCoupons = async (req, res) => {
+  try {
+    const claims = await Claim.find().populate("couponId");
+    res.json(claims);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching coupons" });
+  }
+}
+module.exports = { claimCoupon , getAllCoupons};
