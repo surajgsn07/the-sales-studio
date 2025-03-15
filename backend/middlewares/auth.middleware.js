@@ -1,31 +1,33 @@
-
-import jwt, { decode } from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 const User = require("../models/user.js");
 
-export const verifyJwt = (async( req , res, next)=>{
+const verifyJwt = async (req, res, next) => {
     try {
-        
-        const token =  req.header("Authorization")?.replace("Bearer " , "") || req.body.token || req.body.headers?.Authorization?.replace("Bearer " , "") || req.cookies.accessToken ;
+        const token =
+            req.header("Authorization")?.replace("Bearer ", "") ||
+            req.body.token ||
+            req.headers?.authorization?.replace("Bearer ", "") ||
+            req.cookies?.accessToken;
 
-        
-        if(!token){
-            throw new ApiError(401, "Unauthorized request");
+        if (!token) {
+            return res.status(401).json({ message: "Unauthorized request. No token provided." });
         }
 
-        
-    
-        const decodedToken =  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        // Verify JWT
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
+        // Fetch user
         const user = await User.findById(decodedToken._id).select("-password");
 
-        if(!user){
-            throw new Error(401, "Invalid token");
+        if (!user) {
+            return res.status(401).json({ message: "Invalid token. User not found." });
         }
-    
+
         req.user = user;
         next();
     } catch (error) {
-        throw new Error(401, error?.message || "Invalid access token");
+        return res.status(401).json({ message: "Invalid access token." });
     }
+};
 
-})
+module.exports = { verifyJwt };
