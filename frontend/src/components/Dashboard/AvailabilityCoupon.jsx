@@ -11,10 +11,14 @@ function Availability() {
   // ✅ Fetch Coupons from API
   const fetchCoupons = async () => {
     try {
+      setloadingAvailability(true);
       const response = await axiosInstance.get("/coupon/all");
       if (response.data) setCoupons(response.data);
     } catch (error) {
       console.error("Error fetching coupons:", error);
+    }finally
+    {
+      setloadingAvailability(false);
     }
   };
 
